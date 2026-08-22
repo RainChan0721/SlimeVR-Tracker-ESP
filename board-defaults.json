@@ -85,6 +85,7 @@
 					{
 						"protocol": "I2C",
 						"imu": "IMU_LSM6DSV",
+						"address": 107,
 						"int": "14",
 						"rotation": "DEG_0",
 						"scl": "5",
