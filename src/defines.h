@@ -27,19 +27,19 @@
 
 // Set parameters of IMU and board used
 #ifndef IMU
-#define IMU IMU_AUTO
+#define IMU IMU_LSM6DSV
 #endif
 #ifndef SECOND_IMU
-#define SECOND_IMU IMU_AUTO
+#define SECOND_IMU IMU_NONE
 #endif
 #ifndef BOARD
-#define BOARD BOARD_SLIMEVR_V1_2
+#define BOARD BOARD_SLIMEVR_DEV
 #endif
 #ifndef IMU_ROTATION
-#define IMU_ROTATION DEG_270
+#define IMU_ROTATION DEG_0
 #endif
 #ifndef SECOND_IMU_ROTATION
-#define SECOND_IMU_ROTATION DEG_270
+#define SECOND_IMU_ROTATION DEG_0
 #endif
 
 #ifndef PRIMARY_IMU_OPTIONAL
@@ -64,15 +64,15 @@
 
 // --- OVERRIDES FOR DEFAULT PINS
 
-// #define PIN_IMU_SDA 14
-// #define PIN_IMU_SCL 12
-// #define PIN_IMU_INT 16
-// #define PIN_IMU_INT_2 13
-// #define PIN_BATTERY_LEVEL 17
+#define PIN_IMU_SDA 4
+#define PIN_IMU_SCL 5
+#define PIN_IMU_INT 14
+#define PIN_IMU_INT_2 12
+#define PIN_BATTERY_LEVEL A0
 // #define LED_PIN 2
 // #define LED_INVERTED true
 // #define BATTERY_SHIELD_RESISTANCE 0
-// #define BATTERY_SHIELD_R1 10
-// #define BATTERY_SHIELD_R2 40.2
+#define BATTERY_SHIELD_R1 56
+#define BATTERY_SHIELD_R2 180
 
 // ------------------------------
