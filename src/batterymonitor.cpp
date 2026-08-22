@@ -71,8 +71,19 @@ void BatteryMonitor::Loop() {
 		}
 #endif
 #if ESP8266 && BATTERY_MONITOR == BAT_EXTERNAL
-		voltage = ((float)analogRead(PIN_BATTERY_LEVEL)) * ADCVoltageMax / ADCResolution
-				* ADCMultiplier;
+		uint32_t adcSum = 0;
+		for (int i = 0; i < 16; i++) {
+			adcSum += analogRead(PIN_BATTERY_LEVEL);
+			delayMicroseconds(100);
+		}
+		float rawAdc = (float)adcSum / 16.0f;
+		float newVoltage = rawAdc * ADCVoltageMax / ADCResolution * ADCMultiplier;
+
+		if (voltage < 0) {
+			voltage = newVoltage;
+		} else {
+			voltage = voltage * 0.7f + newVoltage * 0.3f;
+		}
 #endif
 #if defined(ESP32) && BATTERY_MONITOR == BAT_EXTERNAL
 		voltage
