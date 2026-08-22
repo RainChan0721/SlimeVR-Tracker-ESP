@@ -60,7 +60,7 @@
 #define samplingRateInMillis 10
 
 // Sleeping options
-#define POWERSAVING_MODE POWER_SAVING_LEGACY  // Minimum causes sporadic data pauses
+#define POWERSAVING_MODE POWER_SAVING_NONE
 #if POWERSAVING_MODE >= POWER_SAVING_MINIMUM
 #define TARGET_LOOPTIME_MICROS (samplingRateInMillis * 1000)
 #endif
@@ -87,10 +87,10 @@
 #define I2C_SPEED 400000
 
 #define COMPLIANCE_MODE true
-#define USE_ATTENUATION COMPLIANCE_MODE&& ESP8266
-#define ATTENUATION_N 10.0 / 4.0
-#define ATTENUATION_G 14.0 / 4.0
-#define ATTENUATION_B 40.0 / 4.0
+#define USE_ATTENUATION true
+#define ATTENUATION_N 4.5
+#define ATTENUATION_G 4.5
+#define ATTENUATION_B 4.5
 
 // Send inspection packets over the network to a profiler
 // Not recommended for production
