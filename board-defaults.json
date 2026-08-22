@@ -84,25 +84,17 @@
 				"SENSORS": [
 					{
 						"protocol": "I2C",
-						"imu": "IMU_AUTO",
-						"int": "10",
-						"rotation": "DEG_270",
-						"scl": "5",
-						"sda": "4"
-					},
-					{
-						"protocol": "I2C",
-						"imu": "IMU_AUTO",
-						"int": "13",
-						"rotation": "DEG_270",
+						"imu": "IMU_LSM6DSV",
+						"int": "14",
+						"rotation": "DEG_0",
 						"scl": "5",
 						"sda": "4"
 					}
 				],
 				"BATTERY": {
 					"type": "BAT_EXTERNAL",
-					"r1": 10,
-					"r2": 40.2,
+					"r1": 56,
+					"r2": 180,
 					"shieldR": 0,
 					"pin": "17"
 				},
