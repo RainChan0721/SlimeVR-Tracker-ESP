@@ -8,3 +8,5 @@ compile_commands.json
 node_modules/
 dist/
 .nix-platformio
+__pycache__/
+*.py[cod]
