@@ -30,6 +30,7 @@
 #include "debugging/Benchmark.h"
 #include "globals.h"
 #include "logging/Logger.h"
+#include "logging/SerialBuffer.h"
 #include "ota.h"
 #include "serial/serialcommands.h"
 #include "status/TPSCounter.h"
@@ -68,6 +69,9 @@ TPSCounter tpsCounter;
 
 void setup() {
 	Serial.begin(serialBaudRate);
+	// Enable immediate printing of data by the SerialBuffer for the length
+	// of the setup function
+	SlimeVR::Logging::SerialBuffer::getInstance().enableImmediateMode(true);
 	globalTimer = timer_create_default();
 
 	Serial.println();
@@ -158,6 +162,8 @@ void setup() {
 
 	loopTime = micros();
 	tpsCounter.reset();
+
+	SlimeVR::Logging::SerialBuffer::getInstance().enableImmediateMode(false);
 }
 
 void loop() {
@@ -197,6 +203,18 @@ void loop() {
 	I2CSCAN::update();
 	i2cScanBM.after();
 
+#if defined(PRINT_STATE_EVERY_MS) && PRINT_STATE_EVERY_MS > 0
+	printStateBM.before();
+	unsigned long now = millis();
+	if (lastStatePrint + PRINT_STATE_EVERY_MS < now) {
+		lastStatePrint = now;
+		SerialCommands::printState();
+	}
+	printStateBM.after();
+#endif
+
+	SlimeVR::Logging::Logger::tick();
+
 #ifdef TARGET_LOOPTIME_MICROS
 	targetLooptimeBM.before();
 	long elapsed = (micros() - loopTime);
@@ -215,13 +233,5 @@ void loop() {
 	loopTime = micros();
 	targetLooptimeBM.after();
 #endif
-#if defined(PRINT_STATE_EVERY_MS) && PRINT_STATE_EVERY_MS > 0
-	printStateBM.before();
-	unsigned long now = millis();
-	if (lastStatePrint + PRINT_STATE_EVERY_MS < now) {
-		lastStatePrint = now;
-		SerialCommands::printState();
-	}
-	printStateBM.after();
-#endif
+	SlimeVR::Debugging::Benchmark::tick();
 }
