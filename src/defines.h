@@ -30,7 +30,7 @@
 #define IMU IMU_LSM6DSV
 #endif
 #ifndef SECOND_IMU
-#define SECOND_IMU IMU_NONE
+#define SECOND_IMU IMU_AUTO
 #endif
 #ifndef BOARD
 #define BOARD BOARD_SLIMEVR_DEV
@@ -43,7 +43,7 @@
 #endif
 
 #ifndef PRIMARY_IMU_OPTIONAL
-#define PRIMARY_IMU_OPTIONAL false
+#define PRIMARY_IMU_OPTIONAL true
 #endif
 #ifndef SECONDARY_IMU_OPTIONAL
 #define SECONDARY_IMU_OPTIONAL true
@@ -51,8 +51,8 @@
 
 // Set I2C address here or directly in IMU_DESC_ENTRY for each IMU used
 // If not set, default address is used based on the IMU and Sensor ID
-// #define PRIMARY_IMU_ADDRESS_ONE 0x4a
-// #define SECONDARY_IMU_ADDRESS_TWO 0x4b
+// #define PRIMARY_IMU_ADDRESS_ONE 0x6a
+// #define SECONDARY_IMU_ADDRESS_TWO 0x6b
 
 #ifndef BATTERY_MONITOR
 // Battery monitoring options (comment to disable):
